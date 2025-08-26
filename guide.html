@@ -39,11 +39,6 @@
     }
   </style>
 </head>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('fade-in');
-  });
-</script>
 
 <body>
 
@@ -73,20 +68,7 @@
     </div>
   </main>
 
-  <script>
-    // Restrict access to students only
-    window.onload = function () {
-      const role = localStorage.getItem("userRole");
-      if (role !== "student") {
-        alert("Access denied. Student only.");
-        window.location.href = "home.html";
-      }
-    };
 
-    function logout() {
-      localStorage.removeItem("userRole");
-    }
-  </script>
 
 </body>
 </html>

@@ -24,6 +24,7 @@
       padding: 25px;
       transition: transform 0.3s ease;
       cursor: pointer;
+      margin-top: 20px;
     }
 
     .dashboard-card:hover {
@@ -42,6 +43,7 @@
     }
   </style>
 </head>
+
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('fade-in');
@@ -51,7 +53,7 @@
 <body>
 
   <header>
-    <div class="left-header">
+    <div class="header">
       <img src="logo.PNG" alt="Christ Logo" class="logo-img" />
       <div class="logo-text">
         <strong>CHRIST</strong><br>
@@ -79,7 +81,7 @@
   </main>
 
   <script>
-    // Prevent access if not student
+    
     window.onload = function () {
       const role = localStorage.getItem("userRole");
       if (role !== "student") {

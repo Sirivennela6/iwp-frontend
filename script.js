@@ -1,4 +1,4 @@
-// Toggle hamburger menu
+
 function toggleMenu() {
   const nav = document.getElementById("main-nav");
   if (nav.style.display === "flex") {
@@ -8,7 +8,6 @@ function toggleMenu() {
   }
 }
 
-// Access control function
 function checkAccess(expectedRole) {
   const userRole = localStorage.getItem("userRole");
   if (userRole !== expectedRole) {
@@ -17,13 +16,11 @@ function checkAccess(expectedRole) {
   }
 }
 
-// Logout function
 function logout() {
   localStorage.removeItem("userRole");
   window.location.href = "home.html";
 }
 
-// Auto-close mobile nav on link click (optional enhancement)
 window.addEventListener("load", () => {
   const navLinks = document.querySelectorAll("nav a");
   const nav = document.getElementById("main-nav");
