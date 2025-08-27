@@ -4,18 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Project Assessment</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('fade-in');
-  });
-</script>
-
 <body>
   <header>
     <div class="left-header">
-      <img src="logo.PNG" alt="Christ Logo" class="logo-img" />
+      <img src="/logo.PNG" alt="Christ Logo" class="logo-img" />
       <div class="logo-text">
         <strong>CHRIST</strong><br />
         <span>(DEEMED TO BE UNIVERSITY)</span>
@@ -92,13 +86,13 @@
     }
 
     function loadFile() {
-      const selected = document.getElementById("student").value;
-      const data = JSON.parse(localStorage.getItem("submittedProject"));
+      const selectedStudent = document.getElementById("student").value;
+      const data = JSON.parse(localStorage.getItem("lastSubmission"));
 
       const details = document.getElementById("projectDetails");
       const viewer = document.getElementById("fileViewer");
 
-      if (!data || data.studentInfo !== selected) {
+      if (!data || data.studentInfo !== selectedStudent) {
         details.innerHTML = `<p style="color:red;">No project submission found for selected student.</p>`;
         viewer.innerHTML = `<p style="padding:10px; font-size: 14px;">* File preview will appear here after loading.</p>`;
         return;
@@ -108,17 +102,18 @@
         <strong>Submitted Project</strong><br>
         <b>Student:</b> ${data.studentInfo}<br>
         <b>Title:</b> ${data.title}<br>
+        <b>Abstract:</b> ${data.abstract}<br>
         <b>Domain:</b> ${data.domain}<br>
-        <b>Guide:</b> ${data.guide}<br>
-        <b>File:</b> ${data.fileName}
+        <b>Class & Section:</b> ${data.classSection}<br>
+        <b>Guide:</b> ${data.guide}
       `;
 
-      viewer.innerHTML = `
-        <iframe src="${URL.createObjectURL(new Blob([], { type: 'application/pdf' }))}" 
-                title="Project File"
-                style="width:100%; height:300px; border:none;"></iframe>
-        <p style="font-size:12px; color:gray;">* This is a placeholder. Actual file preview requires backend.</p>
-      `;
+      const fileUrl = data.fileUrl;
+      if (fileUrl.endsWith(".pdf")) {
+        viewer.innerHTML = `<iframe src="${fileUrl}#toolbar=0" width="100%" height="300px" style="border:none;"></iframe>`;
+      } else {
+        viewer.innerHTML = `<a href="${fileUrl}" target="_blank" rel="noopener">Download project file</a>`;
+      }
     }
   </script>
 </body>
